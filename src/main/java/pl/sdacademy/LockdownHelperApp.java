@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sdacademy.model.Contact;
 import pl.sdacademy.model.ContactType;
 import pl.sdacademy.model.Lockdown;
@@ -27,6 +28,7 @@ public class LockdownHelperApp {
     }
 
     @EventListener(ApplicationReadyEvent.class)
+    @Transactional
     public void fillDatabase() {
         User initialUser = User.builder()
                 .name("Jan")
@@ -41,6 +43,7 @@ public class LockdownHelperApp {
                                 .build()).build();
         userRepo.save(initialUser);
         log.info(initialUser.toString());
+        log.info(userRepo.findById(1L).get().toString());
     }
 
 }

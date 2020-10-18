@@ -11,16 +11,12 @@ import javax.persistence.*;
 @Builder
 public class Contact {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String value;
 
     @Enumerated(EnumType.ORDINAL)
     private ContactType contactType;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private User user;
 
     @Override
     public String toString() {
@@ -28,7 +24,6 @@ public class Contact {
                 "id=" + id +
                 ", value='" + value + '\'' +
                 ", contactType=" + contactType +
-                ", user=" + user +
                 '}';
     }
 }

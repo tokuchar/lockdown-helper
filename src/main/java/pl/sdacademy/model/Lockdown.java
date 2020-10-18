@@ -15,18 +15,8 @@ import java.time.LocalDate;
 @Builder
 public class Lockdown {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     LocalDate start;
     LocalDate end;
-    @OneToOne
-    private User user;
-
-    @Override
-    public String toString() {
-        return "Lockdown{" +
-                "id=" + id +
-                ", user=" + user +
-                '}';
-    }
 }

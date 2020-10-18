@@ -12,14 +12,13 @@ import java.util.Set;
 @Builder
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long userId;
     private String name;
     private String surname;
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
     private Set<Contact> contacts;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -28,7 +27,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", contacts=" + contacts +
